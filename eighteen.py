@@ -1,26 +1,43 @@
-class QuizBrain:
+import turtle as t
+import random
+t.Turtle()
 
-    def __init__(self, question_list):
-        self.question_number = 0
-        self.question_list = question_list
-        self.score = 0
+color_list = [(236, 248, 243), (36, 95, 183), (236, 165, 79), (244, 223, 87), (215, 69, 105), (98, 197, 234),
+              (250, 51, 22), (203, 70, 21), (240, 106, 143), (185, 47, 90), (143, 233, 216), (252, 136, 166),
+              (165, 175, 233), (66, 45, 13), (72, 205, 170), (83, 187, 100), (20, 156, 51), (24, 36, 86), (252, 220, 0),
+              (164, 28, 8), (105, 39, 44), (250, 152, 2), (22, 151, 229), (108, 213, 249), (254, 12, 3), (38, 48, 98),
+              (98, 96, 186)]
 
-    def still_has_questions(self):
-        return self.question_number < len(self.question_list)
+random_color = (random.choice(color_list))
+t.colormode(255)
+t.penup()
+t.speed("fastest")
+t.hideturtle()
 
-    def next_question(self):
-        current_question = self.question_list[self.question_number]
-        self.question_number += 1
-        user_answer = input(f"Q.{self.question_number}: {current_question.text} (True/False)")
-        self.check_answer(user_answer, current_question.answer)
 
-    def check_answer(self, user_answer, correct_answer):
-        if user_answer.lower() == correct_answer.lower():
-            print("You got it right!")
-            self.score += 1
-        else:
-            print("That's incorrect")
-        print(f"The correct answer was: {correct_answer}.")
-        print(f"Your current score is {self.score}/{self.question_number}.")
-        print("\n")
-        
+def left_up():
+    t.setheading(90)
+    t.forward(50)
+    t.setheading(0)
+
+
+def right_up():
+    t.setheading(90)
+    t.forward(50)
+    t.setheading(180)
+
+
+for _ in range(5):
+    for _ in range(10):
+        t.dot(20, (random.choice(color_list)))
+        t.setheading(180)
+        t.forward(50)
+    left_up()
+    for _ in range(10):
+        t.forward(50)
+        t.dot(20, (random.choice(color_list)))
+    right_up()
+
+
+screen = t.Screen()
+screen.exitonclick()
